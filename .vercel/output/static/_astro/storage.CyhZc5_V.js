@@ -1,0 +1,9 @@
+var f={exports:{}},i={};/**
+ * @license React
+ * react-jsx-runtime.production.js
+ *
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */var p;function w(){if(p)return i;p=1;var t=Symbol.for("react.transitional.element"),n=Symbol.for("react.fragment");function e(d,r,s){var u=null;if(s!==void 0&&(u=""+s),r.key!==void 0&&(u=""+r.key),"key"in r){s={};for(var a in r)a!=="key"&&(s[a]=r[a])}else s=r;return r=s.ref,{$$typeof:t,type:d,key:u,ref:r!==void 0?r:null,props:s}}return i.Fragment=n,i.jsx=e,i.jsxs=e,i}var S;function x(){return S||(S=1,f.exports=w()),f.exports}var R=x();const c="pilates_sessions",o="pilates_history";function l(){if(typeof window>"u")return[];const t=localStorage.getItem(c);return t?JSON.parse(t):[]}function m(t){return l().find(e=>e.id===t)||null}function E(t){if(typeof window>"u")return;const n=l(),e=n.findIndex(d=>d.id===t.id);e>=0?n[e]={...t,updatedAt:Date.now()}:n.push(t),localStorage.setItem(c,JSON.stringify(n))}function v(t){if(typeof window>"u")return;const n=l().filter(e=>e.id!==t);localStorage.setItem(c,JSON.stringify(n))}function I(t,n){const e={id:crypto.randomUUID(),name:t,exercises:n,createdAt:Date.now(),updatedAt:Date.now()};return E(e),e}function y(){if(typeof window>"u")return[];const t=localStorage.getItem(o);return t?JSON.parse(t):[]}function g(t){if(typeof window>"u")return{...t,id:""};const n=y(),e={...t,id:crypto.randomUUID()};return n.unshift(e),localStorage.setItem(o,JSON.stringify(n)),e}function J(t){if(typeof window>"u")return;const n=y().filter(e=>e.id!==t);localStorage.setItem(o,JSON.stringify(n))}function _(){typeof window>"u"||localStorage.removeItem(o)}export{l as a,v as b,_ as c,J as d,I as e,m as f,y as g,g as h,R as j,E as s};

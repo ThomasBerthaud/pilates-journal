@@ -1,0 +1,1 @@
+function o(r){return r.exercises.reduce((e,t)=>e+t.duration+t.restTime,0)}function u(r){const e=Math.floor(r/3600),t=Math.floor(r%3600/60),n=r%60;return e>0?`${e}h ${t}m ${n}s`:t>0?`${t}m ${n}s`:`${n}s`}export{o as c,u as f};
