@@ -1,0 +1,35 @@
+{
+  "name": "Séance Débutant",
+  "exercises": [
+    {
+      "name": "Respiration",
+      "duration": 60,
+      "description": "Allongez-vous sur le dos, genoux pliés. Inspirez profondément par le nez en gonflant le ventre, expirez lentement par la bouche.",
+      "restTime": 30
+    },
+    {
+      "name": "Pont",
+      "duration": 45,
+      "description": "Allongé sur le dos, genoux pliés, pieds au sol. Soulevez les hanches en contractant les fessiers et les abdominaux. Maintenez la position.",
+      "restTime": 30
+    },
+    {
+      "name": "Planche genoux",
+      "duration": 30,
+      "description": "En position planche sur les genoux, gardez le dos droit et les abdominaux contractés. Maintenez la position.",
+      "restTime": 30
+    },
+    {
+      "name": "Cercles de jambes",
+      "duration": 30,
+      "description": "Allongé sur le dos, une jambe tendue vers le ciel. Faites de petits cercles avec la jambe, 15 dans un sens puis 15 dans l'autre.",
+      "restTime": 30
+    },
+    {
+      "name": "Étirement final",
+      "duration": 60,
+      "description": "Assis, jambes tendues. Penchez-vous doucement vers l'avant pour étirer l'arrière des jambes.",
+      "restTime": 0
+    }
+  ]
+}
