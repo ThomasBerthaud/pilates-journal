@@ -1,6 +1,6 @@
 ---
+import HistoryComponent from '../components/History';
 import Layout from '../layouts/Layout.astro';
-import History from '../components/History';
 ---
 
 <Layout title="Pilates Journal - Historique">
@@ -11,6 +11,6 @@ import History from '../components/History';
       </a>
       <h1 class="text-4xl font-bold text-gray-800">Historique</h1>
     </div>
-    <History client:load />
+    <HistoryComponent client:load />
   </div>
 </Layout>

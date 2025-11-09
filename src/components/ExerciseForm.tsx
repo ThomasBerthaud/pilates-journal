@@ -72,7 +72,7 @@ export default function ExerciseForm({ exercise, onSave, onCancel }: ExerciseFor
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Ex: Planche"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-900 bg-white"
                 required
               />
             </div>
@@ -87,7 +87,7 @@ export default function ExerciseForm({ exercise, onSave, onCancel }: ExerciseFor
                   value={duration}
                   onChange={(e) => setDuration(parseInt(e.target.value) || 0)}
                   min="1"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-900 bg-white"
                   required
                 />
                 <p className="text-xs text-gray-500 mt-1">
@@ -104,7 +104,7 @@ export default function ExerciseForm({ exercise, onSave, onCancel }: ExerciseFor
                   value={restTime}
                   onChange={(e) => setRestTime(parseInt(e.target.value) || 0)}
                   min="0"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-900 bg-white"
                 />
               </div>
             </div>
@@ -120,7 +120,7 @@ export default function ExerciseForm({ exercise, onSave, onCancel }: ExerciseFor
                     e.target.value === 'exercise' ? undefined : (e.target.value as 'warmup' | 'stretch')
                   )
                 }
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-900 bg-white text-base"
               >
                 <option value="exercise">Exercice normal</option>
                 <option value="warmup">Échauffement</option>
@@ -140,7 +140,7 @@ export default function ExerciseForm({ exercise, onSave, onCancel }: ExerciseFor
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Décrivez comment effectuer cet exercice..."
                 rows={4}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-900 bg-white"
               />
             </div>
 

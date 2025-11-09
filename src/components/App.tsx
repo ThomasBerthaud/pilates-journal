@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import SessionList from './SessionList';
-import PresetSessions from './PresetSessions';
-import SessionForm from './SessionForm';
+import { isPresetSession } from '../utils/storage';
 import type { Session } from '../utils/types';
+import SessionForm from './SessionForm';
+import SessionList from './SessionList';
 
 export default function App() {
   const [showForm, setShowForm] = useState(false);
@@ -15,6 +15,10 @@ export default function App() {
   };
 
   const handleEdit = (session: Session) => {
+    // Don't allow editing preset sessions
+    if (isPresetSession(session.id)) {
+      return;
+    }
     setEditingSessionId(session.id);
     setShowForm(true);
   };
@@ -34,13 +38,8 @@ export default function App() {
     setEditingSessionId(null);
   };
 
-  const handlePresetImport = () => {
-    setRefreshKey((prev) => prev + 1);
-  };
-
   return (
     <>
-      <PresetSessions key={`presets-${refreshKey}`} onImport={handlePresetImport} />
       <SessionList
         key={`sessions-${refreshKey}`}
         onEdit={handleEdit}

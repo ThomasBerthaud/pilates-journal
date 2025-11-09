@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
-import { getAllSessions, deleteSession } from '../utils/storage';
+import { useEffect, useState } from 'react';
+import { calculateTotalDuration, formatDuration } from '../utils/calculations';
+import { getPresetSessions } from '../utils/presets';
+import { deleteSession, getAllSessions, isPresetSession } from '../utils/storage';
 import type { Session } from '../utils/types';
-import { formatDuration, calculateTotalDuration } from '../utils/calculations';
 
 import SessionPreview from './SessionPreview';
 
@@ -16,7 +17,10 @@ export default function SessionList({ onEdit, onStart, onCreateNew }: SessionLis
   const [previewSession, setPreviewSession] = useState<Session | null>(null);
 
   const loadSessions = () => {
-    setSessions(getAllSessions());
+    const userSessions = getAllSessions();
+    const presetSessions = getPresetSessions();
+    // Combine presets first, then user sessions
+    setSessions([...presetSessions, ...userSessions]);
   };
 
   useEffect(() => {
@@ -24,6 +28,10 @@ export default function SessionList({ onEdit, onStart, onCreateNew }: SessionLis
   }, []);
 
   const handleDelete = (id: string) => {
+    // Don't allow deleting preset sessions
+    if (isPresetSession(id)) {
+      return;
+    }
     if (confirm('Êtes-vous sûr de vouloir supprimer cette séance ?')) {
       deleteSession(id);
       loadSessions();
@@ -58,11 +66,23 @@ export default function SessionList({ onEdit, onStart, onCreateNew }: SessionLis
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {sessions.map((session) => {
           const totalDuration = calculateTotalDuration(session);
+          const isPreset = isPresetSession(session.id);
           return (
             <div
               key={session.id}
-              className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 transform hover:scale-105 animate-fade-in"
+              className={`rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border transform hover:scale-105 animate-fade-in ${
+                isPreset
+                  ? 'bg-linear-to-br from-purple-50 to-indigo-50 border-purple-200'
+                  : 'bg-white border-gray-100'
+              }`}
             >
+              <div className="flex items-center gap-2 mb-2">
+                {isPreset && (
+                  <span className="px-2 py-1 bg-purple-600 text-white text-xs font-semibold rounded">
+                    Prédéfinie
+                  </span>
+                )}
+              </div>
               <h3 className="text-xl font-bold text-gray-800 mb-2">{session.name}</h3>
               <div className="text-sm text-gray-600 mb-4 space-y-1">
                 <p>
@@ -83,18 +103,22 @@ export default function SessionList({ onEdit, onStart, onCreateNew }: SessionLis
                 >
                   Démarrer
                 </button>
-                <button
-                  onClick={() => onEdit(session)}
-                  className="px-4 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors"
-                >
-                  Modifier
-                </button>
-                <button
-                  onClick={() => handleDelete(session.id)}
-                  className="px-4 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition-colors"
-                >
-                  Supprimer
-                </button>
+                {!isPreset && (
+                  <>
+                    <button
+                      onClick={() => onEdit(session)}
+                      className="px-4 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors"
+                    >
+                      Modifier
+                    </button>
+                    <button
+                      onClick={() => handleDelete(session.id)}
+                      className="px-4 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition-colors"
+                    >
+                      Supprimer
+                    </button>
+                  </>
+                )}
               </div>
             </div>
           );

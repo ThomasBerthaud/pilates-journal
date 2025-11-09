@@ -1,4 +1,5 @@
-import type { Session, HistoryEntry } from './types';
+import { getPresetSessions } from './presets';
+import type { HistoryEntry, Session } from './types';
 
 const SESSIONS_KEY = 'pilates_sessions';
 const HISTORY_KEY = 'pilates_history';
@@ -11,8 +12,18 @@ export function getAllSessions(): Session[] {
 }
 
 export function getSessionById(id: string): Session | null {
+  // First check preset sessions
+  const presets = getPresetSessions();
+  const preset = presets.find((s) => s.id === id);
+  if (preset) return preset;
+
+  // Then check user sessions
   const sessions = getAllSessions();
   return sessions.find((s) => s.id === id) || null;
+}
+
+export function isPresetSession(id: string): boolean {
+  return id.startsWith('preset-');
 }
 
 export function saveSession(session: Session): void {
