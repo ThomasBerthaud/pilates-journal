@@ -58,6 +58,14 @@ export default tseslint.config(
     },
   },
   {
-    ignores: ['node_modules/**', 'dist/**', '.astro/**', '*.lock', 'package-lock.json', '.env*'],
+    ignores: [
+      'node_modules/**',
+      'dist/**',
+      '.astro/**',
+      '*.lock',
+      'package-lock.json',
+      '.env*',
+      '.vercel/**',
+    ],
   }
 );
