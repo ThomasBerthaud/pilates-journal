@@ -1,3 +1,4 @@
+import { AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { addHistoryEntry, updateHistoryEntry } from '../utils/storage';
 import type { Exercise, Session } from '../utils/types';
@@ -75,12 +76,7 @@ export default function SessionTimer({ session, onComplete }: SessionTimerProps)
   };
 
   if (currentPhase === 'completed') {
-    return (
-      <CompletionView
-        onRatingSubmit={handleRatingSubmit}
-        onSkip={onComplete}
-      />
-    );
+    return <CompletionView onRatingSubmit={handleRatingSubmit} onSkip={onComplete} />;
   }
 
   if (!currentExercise) {
@@ -95,19 +91,23 @@ export default function SessionTimer({ session, onComplete }: SessionTimerProps)
     <div className="max-w-4xl mx-auto">
       <ProgressBar currentIndex={currentExerciseIndex + 1} total={session.exercises.length} />
 
-      {currentPhase === 'exercise' ? (
-        <ExerciseView
-          exercise={currentExercise}
-          exerciseIndex={currentExerciseIndex}
-          onComplete={handleExerciseComplete}
-        />
-      ) : (
-        <RestView
-          restTime={currentExercise.restTime}
-          exerciseIndex={currentExerciseIndex}
-          onComplete={handleRestComplete}
-        />
-      )}
+      <AnimatePresence mode="wait">
+        {currentPhase === 'exercise' ? (
+          <ExerciseView
+            key={`exercise-${currentExerciseIndex}`}
+            exercise={currentExercise}
+            exerciseIndex={currentExerciseIndex}
+            onComplete={handleExerciseComplete}
+          />
+        ) : (
+          <RestView
+            key={`rest-${currentExerciseIndex}`}
+            restTime={currentExercise.restTime}
+            exerciseIndex={currentExerciseIndex}
+            onComplete={handleRestComplete}
+          />
+        )}
+      </AnimatePresence>
 
       <SessionNavigation />
     </div>

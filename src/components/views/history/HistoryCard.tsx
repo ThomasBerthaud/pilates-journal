@@ -1,3 +1,5 @@
+import { TrashIcon } from '@heroicons/react/24/solid';
+import { motion } from 'framer-motion';
 import { formatDuration } from '../../../utils/calculations';
 import type { HistoryEntry } from '../../../utils/types';
 
@@ -46,9 +48,14 @@ export default function HistoryCard({ entry, index, onDelete }: HistoryCardProps
   };
 
   return (
-    <div
-      className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 animate-fade-in"
-      style={{ animationDelay: `${index * 0.1}s` }}
+    <motion.div
+      className="bg-white rounded-xl shadow-md p-6 border border-gray-100"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20, scale: 0.95 }}
+      transition={{ duration: 0.3, delay: index * 0.1 }}
+      whileHover={{ scale: 1.02 }}
+      layout
     >
       <div className="flex justify-between items-start">
         <div className="flex-1">
@@ -69,14 +76,15 @@ export default function HistoryCard({ entry, index, onDelete }: HistoryCardProps
             <p>Durée : {formatDuration(entry.totalDuration)}</p>
           </div>
         </div>
-        <button
+        <motion.button
           onClick={() => onDelete(entry.id)}
-          className="px-4 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition-colors ml-4"
+          className="px-4 py-2 border border-red-600 bg-transparent text-red-600 rounded-lg font-semibold hover:bg-red-600 hover:text-white transition-colors flex items-center gap-2 ml-4"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
-          Supprimer
-        </button>
+          <TrashIcon className="w-5 h-5" />
+        </motion.button>
       </div>
-    </div>
+    </motion.div>
   );
 }
-

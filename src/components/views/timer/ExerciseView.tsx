@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import type { Exercise } from '../../../utils/types';
 import Timer from '../../Timer';
 
@@ -42,7 +43,13 @@ export default function ExerciseView({ exercise, exerciseIndex, onComplete }: Ex
   const styles = getTypeStyles();
 
   return (
-    <div className={`${styles.container} rounded-xl shadow-xl p-8 text-center animate-slide-up`}>
+    <motion.div
+      className={`${styles.container} rounded-xl shadow-xl p-8 text-center`}
+      initial={{ opacity: 0, x: 50 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -50 }}
+      transition={{ duration: 0.4, ease: 'easeInOut' }}
+    >
       <div className="mb-6">
         <span className={`px-4 py-2 ${styles.badge} rounded-full text-sm font-semibold`}>
           {styles.badgeText}
@@ -59,7 +66,7 @@ export default function ExerciseView({ exercise, exerciseIndex, onComplete }: Ex
         textColor={styles.timerColor}
         circleColor={styles.circleColor}
       />
-    </div>
+    </motion.div>
   );
 }
 

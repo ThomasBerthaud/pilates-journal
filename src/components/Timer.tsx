@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 interface TimerProps {
@@ -83,40 +84,54 @@ export default function Timer({
             stroke="#e5e7eb"
             strokeWidth="8"
           />
-          <circle
+          <motion.circle
             cx={circleSize[size] / 2}
             cy={circleSize[size] / 2}
             r={circleSize[size] / 2 - 10}
             fill="none"
             stroke={circleColor}
             strokeWidth="8"
-            strokeDasharray={`${2 * Math.PI * (circleSize[size] / 2 - 10)}`}
-            strokeDashoffset={`${2 * Math.PI * (circleSize[size] / 2 - 10) * (1 - percentage / 100)}`}
-            className="transition-all duration-1000 ease-linear"
+            strokeDasharray={2 * Math.PI * (circleSize[size] / 2 - 10)}
+            strokeDashoffset={2 * Math.PI * (circleSize[size] / 2 - 10) * (1 - percentage / 100)}
+            initial={{ strokeDashoffset: 2 * Math.PI * (circleSize[size] / 2 - 10) }}
+            animate={{
+              strokeDashoffset: 2 * Math.PI * (circleSize[size] / 2 - 10) * (1 - percentage / 100),
+            }}
+            transition={{ duration: 1, ease: 'linear' }}
           />
         </svg>
         <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-          <span className={`font-bold ${textColor} ${sizeClasses[size]} leading-none`}>
+          <motion.span
+            key={timeLeft}
+            initial={{ scale: 0.95, opacity: 0.7 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.15, ease: 'easeOut' }}
+            className={`font-bold ${textColor} ${sizeClasses[size]} leading-none`}
+          >
             {formatTime(timeLeft)}
-          </span>
+          </motion.span>
         </div>
       </div>
       <div className="mt-4 flex gap-4">
-        <button
+        <motion.button
           onClick={() => setIsRunning(!isRunning)}
           className="px-6 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
           {isRunning ? 'Pause' : 'Démarrer'}
-        </button>
-        <button
+        </motion.button>
+        <motion.button
           onClick={() => {
             setTimeLeft(seconds);
             setIsRunning(false);
           }}
           className="px-6 py-2 bg-gray-600 text-white rounded-lg font-semibold hover:bg-gray-700 transition-colors"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
           Réinitialiser
-        </button>
+        </motion.button>
       </div>
     </div>
   );

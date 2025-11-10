@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import type { Exercise } from '../utils/types';
 
@@ -55,8 +56,20 @@ export default function ExerciseForm({ exercise, onSave, onCancel }: ExerciseFor
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-0 md:p-4 animate-fade-in">
-      <div className="bg-white border border-gray-300 rounded-lg md:rounded-xl shadow-2xl max-w-2xl w-full h-full md:h-auto flex flex-col animate-scale-in">
+    <motion.div
+      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-0 md:p-4"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+    >
+      <motion.div
+        className="bg-white border border-gray-300 rounded-lg md:rounded-xl shadow-2xl max-w-2xl w-full h-full md:h-auto flex flex-col"
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
+      >
         <form onSubmit={handleSubmit} className="flex flex-col h-full">
           <div className="flex-1 overflow-y-auto p-6 space-y-4">
             <h3 className="text-xl font-bold text-gray-800 mb-6">
@@ -147,23 +160,27 @@ export default function ExerciseForm({ exercise, onSave, onCancel }: ExerciseFor
 
           <div className="border-t border-gray-200 p-6 bg-white">
             <div className="flex gap-4 justify-end">
-              <button
+              <motion.button
                 type="button"
                 onClick={onCancel}
                 className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 Annuler
-              </button>
-              <button
+              </motion.button>
+              <motion.button
                 type="submit"
                 className="px-6 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 {exercise ? 'Modifier' : 'Ajouter'}
-              </button>
+              </motion.button>
             </div>
           </div>
         </form>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

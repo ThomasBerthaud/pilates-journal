@@ -1,3 +1,4 @@
+import { AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { isPresetSession } from '../utils/storage';
 import type { Session } from '../utils/types';
@@ -46,13 +47,16 @@ export default function App() {
         onStart={handleStart}
         onCreateNew={handleCreateNew}
       />
-      {showForm && (
-        <SessionForm
-          sessionId={editingSessionId}
-          onSave={handleFormSave}
-          onCancel={handleFormCancel}
-        />
-      )}
+      <AnimatePresence>
+        {showForm && (
+          <SessionForm
+            key="session-form"
+            sessionId={editingSessionId}
+            onSave={handleFormSave}
+            onCancel={handleFormCancel}
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 }

@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
-import { getAllHistory, deleteHistoryEntry, clearHistory } from '../utils/storage';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { clearHistory, deleteHistoryEntry, getAllHistory } from '../utils/storage';
 import type { HistoryEntry } from '../utils/types';
 import EmptyHistoryView from './views/history/EmptyHistoryView';
 import HistoryCard from './views/history/HistoryCard';
@@ -37,16 +38,24 @@ export default function History() {
   return (
     <div className="space-y-4">
       <HistoryHeader count={history.length} onClearAll={handleClearAll} />
-      <div className="space-y-3">
-        {history.map((entry, index) => (
-          <HistoryCard
-            key={entry.id}
-            entry={entry}
-            index={index}
-            onDelete={handleDelete}
-          />
-        ))}
-      </div>
+      <motion.div
+        className="space-y-3"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          visible: {
+            transition: {
+              staggerChildren: 0.1,
+            },
+          },
+        }}
+      >
+        <AnimatePresence mode="popLayout">
+          {history.map((entry, index) => (
+            <HistoryCard key={entry.id} entry={entry} index={index} onDelete={handleDelete} />
+          ))}
+        </AnimatePresence>
+      </motion.div>
     </div>
   );
 }
