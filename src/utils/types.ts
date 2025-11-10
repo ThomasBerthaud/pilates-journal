@@ -20,4 +20,5 @@ export interface HistoryEntry {
   sessionName: string;
   completedAt: number;
   totalDuration: number; // in seconds
+  rating?: 'too-easy' | 'perfect' | 'too-hard';
 }

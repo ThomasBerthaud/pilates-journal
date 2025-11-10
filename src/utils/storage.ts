@@ -81,6 +81,16 @@ export function addHistoryEntry(entry: Omit<HistoryEntry, 'id'>): HistoryEntry {
   return newEntry;
 }
 
+export function updateHistoryEntry(id: string, updates: Partial<HistoryEntry>): void {
+  if (typeof window === 'undefined') return;
+  const history = getAllHistory();
+  const index = history.findIndex((h) => h.id === id);
+  if (index >= 0) {
+    history[index] = { ...history[index], ...updates };
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+  }
+}
+
 export function deleteHistoryEntry(id: string): void {
   if (typeof window === 'undefined') return;
   const history = getAllHistory().filter((h) => h.id !== id);

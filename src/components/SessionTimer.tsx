@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { addHistoryEntry } from '../utils/storage';
+import { addHistoryEntry, updateHistoryEntry } from '../utils/storage';
 import type { Exercise, Session } from '../utils/types';
 import CompletionView from './views/timer/CompletionView';
 import ExerciseView from './views/timer/ExerciseView';
@@ -18,6 +18,7 @@ export default function SessionTimer({ session, onComplete }: SessionTimerProps)
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
   const [currentPhase, setCurrentPhase] = useState<Phase>('exercise');
   const [startTime] = useState<number>(() => Date.now());
+  const [historyEntryId, setHistoryEntryId] = useState<string | null>(null);
 
   const currentExercise: Exercise | null = session.exercises[currentExerciseIndex] || null;
   const isLastExercise = currentExerciseIndex === session.exercises.length - 1;
@@ -55,21 +56,31 @@ export default function SessionTimer({ session, onComplete }: SessionTimerProps)
     const endTime = Date.now();
     const totalDuration = Math.floor((endTime - startTime) / 1000);
 
-    addHistoryEntry({
+    const entry = addHistoryEntry({
       sessionId: session.id,
       sessionName: session.name,
       completedAt: endTime,
       totalDuration,
     });
 
+    setHistoryEntryId(entry.id);
     setCurrentPhase('completed');
-    setTimeout(() => {
-      onComplete();
-    }, 2000);
+  };
+
+  const handleRatingSubmit = (rating: 'too-easy' | 'perfect' | 'too-hard') => {
+    if (historyEntryId) {
+      updateHistoryEntry(historyEntryId, { rating });
+    }
+    onComplete();
   };
 
   if (currentPhase === 'completed') {
-    return <CompletionView />;
+    return (
+      <CompletionView
+        onRatingSubmit={handleRatingSubmit}
+        onSkip={onComplete}
+      />
+    );
   }
 
   if (!currentExercise) {
