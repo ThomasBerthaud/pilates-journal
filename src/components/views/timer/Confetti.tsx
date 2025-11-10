@@ -6,9 +6,26 @@ interface ConfettiPieceProps {
   delay: number;
   color: string;
   shape: 'circle' | 'square' | 'triangle';
+  size: string;
+  rotation: number;
+  duration: number;
+  yDistance: number;
+  rotateDirection: number;
+  xOffset: number;
 }
 
-function ConfettiPiece({ x, delay, color, shape }: ConfettiPieceProps) {
+function ConfettiPiece({
+  x,
+  delay,
+  color,
+  shape,
+  size,
+  rotation,
+  duration,
+  yDistance,
+  rotateDirection,
+  xOffset,
+}: ConfettiPieceProps) {
   const getShape = () => {
     switch (shape) {
       case 'circle':
@@ -22,18 +39,9 @@ function ConfettiPiece({ x, delay, color, shape }: ConfettiPieceProps) {
     }
   };
 
-  const getSize = () => {
-    if (shape === 'triangle') return '';
-    return Math.random() > 0.5 ? 'w-3 h-3' : 'w-2 h-2';
-  };
-
-  const rotation = Math.random() * 360;
-  const duration = 2 + Math.random() * 2;
-  const yDistance = 800 + Math.random() * 400;
-
   return (
     <motion.div
-      className={`absolute ${getSize()} ${getShape()}`}
+      className={`absolute ${size} ${getShape()}`}
       style={{
         left: `${x}%`,
         backgroundColor: shape === 'triangle' ? 'transparent' : color,
@@ -47,9 +55,9 @@ function ConfettiPiece({ x, delay, color, shape }: ConfettiPieceProps) {
       }}
       animate={{
         y: yDistance,
-        rotate: rotation + 360 * (Math.random() > 0.5 ? 1 : -1),
+        rotate: rotation + 360 * rotateDirection,
         opacity: [1, 1, 0],
-        x: (Math.random() - 0.5) * 200,
+        x: xOffset,
       }}
       transition={{
         duration,
@@ -67,6 +75,12 @@ export default function Confetti() {
       delay: number;
       color: string;
       shape: 'circle' | 'square' | 'triangle';
+      size: string;
+      rotation: number;
+      duration: number;
+      yDistance: number;
+      rotateDirection: number;
+      xOffset: number;
     }>
   >([]);
 
@@ -89,19 +103,40 @@ export default function Confetti() {
       delay: number;
       color: string;
       shape: 'circle' | 'square' | 'triangle';
+      size: string;
+      rotation: number;
+      duration: number;
+      yDistance: number;
+      rotateDirection: number;
+      xOffset: number;
     }> = [];
 
     // Générer 50 confettis
     for (let i = 0; i < 50; i++) {
+      const sizeRandom = Math.random();
+      const rotationRandom = Math.random();
+      const durationRandom = Math.random();
+      const yDistanceRandom = Math.random();
+      const rotateDirectionRandom = Math.random();
+      const xRandom = Math.random();
+      const shape = (['circle', 'square', 'triangle'] as const)[Math.floor(Math.random() * 3)];
+
       pieces.push({
         x: Math.random() * 100,
         delay: Math.random() * 0.5,
         color: colors[Math.floor(Math.random() * colors.length)],
-        shape: (['circle', 'square', 'triangle'] as const)[Math.floor(Math.random() * 3)],
+        shape,
+        size: shape === 'triangle' ? '' : sizeRandom > 0.5 ? 'w-3 h-3' : 'w-2 h-2',
+        rotation: rotationRandom * 360,
+        duration: 2 + durationRandom * 2,
+        yDistance: 800 + yDistanceRandom * 400,
+        rotateDirection: rotateDirectionRandom > 0.5 ? 1 : -1,
+        xOffset: (xRandom - 0.5) * 200,
       });
     }
 
     setConfettiPieces(pieces);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

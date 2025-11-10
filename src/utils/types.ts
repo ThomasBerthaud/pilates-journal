@@ -1,9 +1,20 @@
+export type ExerciseCategory =
+  | 'abdominaux'
+  | 'dos'
+  | 'jambes'
+  | 'fessiers'
+  | 'epaules-bras'
+  | 'hanches'
+  | 'corps-entier'
+  | 'warmup'
+  | 'stretch';
+
 export interface Exercise {
   name: string;
   duration: number; // in seconds
   description: string;
   restTime: number; // in seconds
-  type?: 'warmup' | 'exercise' | 'stretch'; // optional type, defaults to 'exercise'
+  category?: ExerciseCategory; // optional category for muscle group
 }
 
 export interface Session {

@@ -1,5 +1,6 @@
 import advancedData from '../data/presets/advanced.json';
 import beginnerData from '../data/presets/beginner.json';
+import bodyweightExercisesData from '../data/presets/bodyweight-exercises.json';
 import intermediateData from '../data/presets/intermediate.json';
 import type { Exercise, Session } from './types';
 
@@ -41,7 +42,7 @@ export function getPresetSessions(): Session[] {
           duration: 10,
           description: 'Test',
           restTime: 0,
-          type: 'warmup',
+          category: 'warmup',
         },
         {
           name: 'Test 2',
@@ -60,7 +61,7 @@ export function getPresetSessions(): Session[] {
           duration: 10,
           description: 'Test 4',
           restTime: 0,
-          type: 'stretch',
+          category: 'stretch',
         },
       ],
       createdAt: PRESET_DATE,
@@ -69,4 +70,8 @@ export function getPresetSessions(): Session[] {
   }
 
   return presets;
+}
+
+export function getPresetExercises(): Exercise[] {
+  return bodyweightExercisesData.exercises as Exercise[];
 }

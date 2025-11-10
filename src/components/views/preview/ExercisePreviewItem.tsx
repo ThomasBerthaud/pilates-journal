@@ -1,3 +1,4 @@
+import { getCategoryColor, getCategoryLabel } from '../../../utils/categoryColors';
 import type { Exercise } from '../../../utils/types';
 
 interface ExercisePreviewItemProps {
@@ -6,41 +7,19 @@ interface ExercisePreviewItemProps {
 }
 
 export default function ExercisePreviewItem({ exercise, index }: ExercisePreviewItemProps) {
-  const getTypeLabel = (type?: string) => {
-    switch (type) {
-      case 'warmup':
-        return 'Échauffement';
-      case 'stretch':
-        return 'Étirement';
-      default:
-        return 'Exercice';
-    }
-  };
-
-  const getTypeBadgeColor = (type?: string) => {
-    switch (type) {
-      case 'warmup':
-        return 'bg-orange-600';
-      case 'stretch':
-        return 'bg-green-600';
-      default:
-        return 'bg-indigo-600';
-    }
-  };
-
   return (
     <div className="border border-gray-200 rounded-lg p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
       <div className="flex items-start justify-between mb-2">
         <div className="flex-1">
-          <div className="flex items-center gap-2 mb-2">
+          <div className="flex items-center gap-2 mb-2 flex-wrap">
             <span className="text-sm font-semibold text-gray-500">
               {index + 1}. {exercise.name}
             </span>
-            {exercise.type && (
+            {exercise.category && (
               <span
-                className={`px-2 py-1 ${getTypeBadgeColor(exercise.type)} text-white text-xs font-semibold rounded`}
+                className={`px-2 py-1 rounded text-xs font-semibold ${getCategoryColor(exercise.category)}`}
               >
-                {getTypeLabel(exercise.type)}
+                {getCategoryLabel(exercise.category)}
               </span>
             )}
           </div>
@@ -58,4 +37,3 @@ export default function ExercisePreviewItem({ exercise, index }: ExercisePreview
     </div>
   );
 }
-
