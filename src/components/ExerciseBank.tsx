@@ -43,6 +43,7 @@ export default function ExerciseBank() {
   const [showExerciseForm, setShowExerciseForm] = useState(false);
   const [editingExercise, setEditingExercise] = useState<Exercise | undefined>(undefined);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   const loadExercises = () => {
     const allExercises = getAllExercisesFromBank();
@@ -54,9 +55,20 @@ export default function ExerciseBank() {
   };
 
   useEffect(() => {
-    // Initialize bank if empty
-    initializeExerciseBank();
-    loadExercises();
+    const loadData = async () => {
+      setIsLoading(true);
+
+      // Use setTimeout to allow UI to render loading state
+      await new Promise((resolve) => setTimeout(resolve, 0));
+
+      // Initialize bank if empty
+      initializeExerciseBank();
+      loadExercises();
+
+      setIsLoading(false);
+    };
+
+    loadData();
   }, []);
 
   const handleToggleCategory = (category: ExerciseCategory) => {
@@ -98,14 +110,21 @@ export default function ExerciseBank() {
     setEditingExercise(undefined);
   };
 
-  const handleReset = () => {
+  const handleReset = async () => {
     if (
       window.confirm(
         "Êtes-vous sûr de vouloir réinitialiser la banque d'exercices ? Tous les exercices personnalisés seront supprimés et remplacés par les exercices des presets."
       )
     ) {
+      setIsLoading(true);
+
+      // Use setTimeout to allow UI to render loading state
+      await new Promise((resolve) => setTimeout(resolve, 0));
+
       resetExerciseBank();
       loadExercises();
+
+      setIsLoading(false);
     }
   };
 
@@ -212,9 +231,10 @@ export default function ExerciseBank() {
         <div className="flex gap-2">
           <motion.button
             onClick={handleReset}
-            className="flex items-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            disabled={isLoading}
+            className="flex items-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            whileHover={!isLoading ? { scale: 1.05 } : {}}
+            whileTap={!isLoading ? { scale: 0.95 } : {}}
             title="Réinitialiser la banque d'exercices"
           >
             <ArrowPathIcon className="w-5 h-5" />
@@ -222,9 +242,10 @@ export default function ExerciseBank() {
           </motion.button>
           <motion.button
             onClick={handleAddExercise}
-            className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            disabled={isLoading}
+            className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            whileHover={!isLoading ? { scale: 1.05 } : {}}
+            whileTap={!isLoading ? { scale: 0.95 } : {}}
           >
             <PlusIcon className="w-5 h-5" />
             Ajouter un exercice
@@ -239,10 +260,20 @@ export default function ExerciseBank() {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-900 bg-white"
+          disabled={isLoading}
         />
       </div>
 
-      {exercises.length === 0 ? (
+      {isLoading ? (
+        <div className="flex flex-col items-center justify-center py-12">
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+            className="w-12 h-12 border-4 border-indigo-200 border-t-indigo-600 rounded-full"
+          />
+          <p className="mt-4 text-gray-600 font-medium">Chargement des exercices...</p>
+        </div>
+      ) : exercises.length === 0 ? (
         <div className="text-center py-12 text-gray-500">
           <p>Aucun exercice dans la banque.</p>
           <p className="mt-2">Ajoutez votre premier exercice pour commencer !</p>
