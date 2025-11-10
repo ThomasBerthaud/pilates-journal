@@ -1,3 +1,4 @@
+import { PlusIcon } from '@heroicons/react/24/solid';
 import { useEffect, useState } from 'react';
 import { getPresetSessions } from '../utils/presets';
 import { deleteSession, getAllSessions, isPresetSession } from '../utils/storage';
@@ -44,7 +45,7 @@ export default function SessionList({ onEdit, onStart, onCreateNew }: SessionLis
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 pb-20 md:pb-4">
       <SessionsHeader onCreateNew={onCreateNew} />
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {sessions.map((session) => (
@@ -68,6 +69,14 @@ export default function SessionList({ onEdit, onStart, onCreateNew }: SessionLis
           onClose={() => setPreviewSession(null)}
         />
       )}
+      {/* Bouton flottant pour mobile */}
+      <button
+        onClick={onCreateNew}
+        className="fixed bottom-6 right-6 md:hidden z-40 w-14 h-14 bg-indigo-600 text-white rounded-full font-semibold hover:bg-indigo-700 transition-colors shadow-2xl hover:shadow-2xl flex items-center justify-center"
+        aria-label="Nouvelle séance"
+      >
+        <PlusIcon className="w-6 h-6" />
+      </button>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import { PlusIcon } from '@heroicons/react/24/solid';
 import type { Exercise } from '../../../utils/types';
 import EmptyExercisesView from './EmptyExercisesView';
 import ExerciseListItem from './ExerciseListItem';
@@ -25,9 +26,10 @@ export default function ExercisesList({
         </label>
         <button
           onClick={onAddExercise}
-          className="px-4 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors"
+          className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors"
         >
-          + Ajouter un exercice
+          <PlusIcon className="w-5 h-5" />
+          Ajouter un exercice
         </button>
       </div>
 

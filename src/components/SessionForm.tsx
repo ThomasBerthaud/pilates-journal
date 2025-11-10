@@ -107,9 +107,9 @@ export default function SessionForm({ sessionId, onSave, onCancel }: SessionForm
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 animate-fade-in">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto animate-scale-in">
-        <div className="p-6">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-0 md:p-4 animate-fade-in">
+      <div className="bg-white border border-gray-300 rounded-lg md:rounded-xl shadow-2xl max-w-4xl w-full h-full md:h-auto md:max-h-[90vh] flex flex-col animate-scale-in">
+        <div className="flex-1 overflow-y-auto p-6">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">
             {sessionId ? 'Modifier la séance' : 'Nouvelle séance'}
           </h2>
@@ -137,7 +137,9 @@ export default function SessionForm({ sessionId, onSave, onCancel }: SessionForm
             onDeleteExercise={handleDeleteExercise}
             onMoveExercise={handleMoveExercise}
           />
+        </div>
 
+        <div className="border-t border-gray-200 p-6 bg-white">
           <div className="flex gap-4 justify-end">
             <button
               onClick={onCancel}

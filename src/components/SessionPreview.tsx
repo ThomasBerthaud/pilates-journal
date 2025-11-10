@@ -12,8 +12,8 @@ export default function SessionPreview({ session, onStart, onClose }: SessionPre
   const totalDuration = calculateTotalDuration(session);
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 animate-fade-in">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto animate-scale-in">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-0 md:p-4 animate-fade-in">
+      <div className="bg-white border border-gray-300 rounded-lg md:rounded-xl shadow-2xl max-w-4xl w-full h-full md:h-auto md:max-h-[90vh] overflow-y-auto animate-scale-in">
         <div className="p-6">
           <div className="flex justify-between items-start mb-6">
             <div>
