@@ -30,7 +30,7 @@ export default function SessionList({ onEdit, onStart, onCreateNew }: SessionLis
       // Combine presets first, then user sessions
       setSessions([...presetSessions, ...userSessions]);
       setIsLoading(false);
-    }, 500);
+    }, 0);
   };
 
   useEffect(() => {

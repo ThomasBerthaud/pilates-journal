@@ -17,7 +17,7 @@ export default function History() {
     setTimeout(() => {
       setHistory(getAllHistory());
       setIsLoading(false);
-    }, 500);
+    }, 0);
   };
 
   useEffect(() => {
