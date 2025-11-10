@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { createSession, getSessionById, saveSession } from '../utils/storage';
 import type { Exercise } from '../utils/types';
 import ExerciseForm from './ExerciseForm';
+import ExercisesList from './views/forms/ExercisesList';
 
 interface SessionFormProps {
   sessionId?: string | null;
@@ -126,78 +127,16 @@ export default function SessionForm({ sessionId, onSave, onCancel }: SessionForm
             />
           </div>
 
-          <div className="mb-6">
-            <div className="flex justify-between items-center mb-4">
-              <label className="block text-sm font-semibold text-gray-700">
-                Exercices ({exercises.length})
-              </label>
-              <button
-                onClick={() => {
-                  setEditingExerciseIndex(null);
-                  setShowExerciseForm(true);
-                }}
-                className="px-4 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors"
-              >
-                + Ajouter un exercice
-              </button>
-            </div>
-
-            {exercises.length === 0 ? (
-              <p className="text-gray-500 text-center py-8">Aucun exercice ajouté</p>
-            ) : (
-              <div className="space-y-3">
-                {exercises.map((exercise, index) => (
-                  <div
-                    key={index}
-                    className="border border-gray-200 rounded-lg p-4 bg-gray-50 hover:bg-gray-100 transition-colors"
-                  >
-                    <div className="flex justify-between items-start mb-2">
-                      <div className="flex-1">
-                        <h4 className="font-semibold text-gray-800">{exercise.name}</h4>
-                        <p className="text-sm text-gray-600 mt-1">{exercise.description}</p>
-                        <div className="flex gap-4 mt-2 text-xs text-gray-500">
-                          <span>
-                            Durée: {Math.floor(exercise.duration / 60)}m {exercise.duration % 60}s
-                          </span>
-                          <span>Repos: {exercise.restTime}s</span>
-                        </div>
-                      </div>
-                      <div className="flex gap-2 ml-4">
-                        <button
-                          onClick={() => handleMoveExercise(index, 'up')}
-                          disabled={index === 0}
-                          className="px-2 py-1 text-gray-600 hover:bg-gray-200 rounded disabled:opacity-50"
-                          title="Monter"
-                        >
-                          ↑
-                        </button>
-                        <button
-                          onClick={() => handleMoveExercise(index, 'down')}
-                          disabled={index === exercises.length - 1}
-                          className="px-2 py-1 text-gray-600 hover:bg-gray-200 rounded disabled:opacity-50"
-                          title="Descendre"
-                        >
-                          ↓
-                        </button>
-                        <button
-                          onClick={() => handleEditExercise(index)}
-                          className="px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700 text-sm"
-                        >
-                          Modifier
-                        </button>
-                        <button
-                          onClick={() => handleDeleteExercise(index)}
-                          className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 text-sm"
-                        >
-                          Supprimer
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+          <ExercisesList
+            exercises={exercises}
+            onAddExercise={() => {
+              setEditingExerciseIndex(null);
+              setShowExerciseForm(true);
+            }}
+            onEditExercise={handleEditExercise}
+            onDeleteExercise={handleDeleteExercise}
+            onMoveExercise={handleMoveExercise}
+          />
 
           <div className="flex gap-4 justify-end">
             <button
