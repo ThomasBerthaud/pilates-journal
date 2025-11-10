@@ -1,4 +1,5 @@
 import { motion, type Variants } from 'framer-motion';
+import Confetti from './Confetti';
 
 interface CompletionViewProps {
   onRatingSubmit: (rating: 'too-easy' | 'perfect' | 'too-hard') => void;
@@ -79,90 +80,93 @@ const buttonVariants: Variants = {
 
 export default function CompletionView({ onRatingSubmit, onSkip }: CompletionViewProps) {
   return (
-    <motion.div
-      className="text-center py-12 max-w-2xl mx-auto"
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-    >
+    <>
+      <Confetti />
       <motion.div
-        className="text-6xl mb-4"
-        variants={emojiVariants}
-        animate={{
-          rotate: [0, -10, 10, -10, 10, 0],
-          scale: [1, 1.1, 1],
-        }}
-        transition={{
-          rotate: {
-            delay: 0.6,
-            duration: 0.6,
-            ease: 'easeInOut',
-          },
-          scale: {
-            delay: 0.6,
-            duration: 0.6,
-            ease: 'easeInOut',
-          },
-        }}
+        className="text-center py-12 max-w-2xl mx-auto"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
       >
-        🎉
-      </motion.div>
-      <motion.h2 className="text-3xl font-bold text-gray-800 mb-2" variants={titleVariants}>
-        Séance terminée !
-      </motion.h2>
-      <motion.p className="text-gray-600 mb-8" variants={itemVariants}>
-        Bravo pour avoir complété cette séance !
-      </motion.p>
-
-      <motion.div
-        className="bg-white rounded-xl shadow-lg p-8 border border-gray-200"
-        variants={itemVariants}
-      >
-        <motion.h3 className="text-xl font-semibold text-gray-800 mb-6" variants={itemVariants}>
-          Comment avez-vous trouvé cette séance ?
-        </motion.h3>
         <motion.div
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-          variants={containerVariants}
+          className="text-6xl mb-4"
+          variants={emojiVariants}
+          animate={{
+            rotate: [0, -10, 10, -10, 10, 0],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            rotate: {
+              delay: 0.6,
+              duration: 0.6,
+              ease: 'easeInOut',
+            },
+            scale: {
+              delay: 0.6,
+              duration: 0.6,
+              ease: 'easeInOut',
+            },
+          }}
         >
-          <motion.button
-            onClick={() => onRatingSubmit('too-easy')}
-            className="px-6 py-3 bg-green-100 text-green-700 rounded-lg font-semibold hover:bg-green-200 transition-colors border-2 border-green-300"
-            variants={buttonVariants}
-            whileHover="hover"
-            whileTap="tap"
+          🎉
+        </motion.div>
+        <motion.h2 className="text-3xl font-bold text-gray-800 mb-2" variants={titleVariants}>
+          Séance terminée !
+        </motion.h2>
+        <motion.p className="text-gray-600 mb-8" variants={itemVariants}>
+          Bravo pour avoir complété cette séance !
+        </motion.p>
+
+        <motion.div
+          className="bg-white rounded-xl shadow-lg p-8 border border-gray-200"
+          variants={itemVariants}
+        >
+          <motion.h3 className="text-xl font-semibold text-gray-800 mb-6" variants={itemVariants}>
+            Comment avez-vous trouvé cette séance ?
+          </motion.h3>
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+            variants={containerVariants}
           >
-            Trop facile
-          </motion.button>
+            <motion.button
+              onClick={() => onRatingSubmit('too-easy')}
+              className="px-6 py-3 bg-green-100 text-green-700 rounded-lg font-semibold hover:bg-green-200 transition-colors border-2 border-green-300"
+              variants={buttonVariants}
+              whileHover="hover"
+              whileTap="tap"
+            >
+              Trop facile
+            </motion.button>
+            <motion.button
+              onClick={() => onRatingSubmit('perfect')}
+              className="px-6 py-3 bg-indigo-100 text-indigo-700 rounded-lg font-semibold hover:bg-indigo-200 transition-colors border-2 border-indigo-300"
+              variants={buttonVariants}
+              whileHover="hover"
+              whileTap="tap"
+            >
+              Parfait
+            </motion.button>
+            <motion.button
+              onClick={() => onRatingSubmit('too-hard')}
+              className="px-6 py-3 bg-red-100 text-red-700 rounded-lg font-semibold hover:bg-red-200 transition-colors border-2 border-red-300"
+              variants={buttonVariants}
+              whileHover="hover"
+              whileTap="tap"
+            >
+              Trop dur
+            </motion.button>
+          </motion.div>
           <motion.button
-            onClick={() => onRatingSubmit('perfect')}
-            className="px-6 py-3 bg-indigo-100 text-indigo-700 rounded-lg font-semibold hover:bg-indigo-200 transition-colors border-2 border-indigo-300"
-            variants={buttonVariants}
-            whileHover="hover"
-            whileTap="tap"
+            onClick={onSkip}
+            className="mt-6 text-gray-500 hover:text-gray-700 text-sm underline"
+            variants={itemVariants}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            Parfait
-          </motion.button>
-          <motion.button
-            onClick={() => onRatingSubmit('too-hard')}
-            className="px-6 py-3 bg-red-100 text-red-700 rounded-lg font-semibold hover:bg-red-200 transition-colors border-2 border-red-300"
-            variants={buttonVariants}
-            whileHover="hover"
-            whileTap="tap"
-          >
-            Trop dur
+            Passer
           </motion.button>
         </motion.div>
-        <motion.button
-          onClick={onSkip}
-          className="mt-6 text-gray-500 hover:text-gray-700 text-sm underline"
-          variants={itemVariants}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          Passer
-        </motion.button>
       </motion.div>
-    </motion.div>
+    </>
   );
 }
