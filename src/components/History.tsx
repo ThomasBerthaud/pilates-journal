@@ -4,13 +4,20 @@ import { clearHistory, deleteHistoryEntry, getAllHistory } from '../utils/storag
 import type { HistoryEntry } from '../utils/types';
 import EmptyHistoryView from './views/history/EmptyHistoryView';
 import HistoryCard from './views/history/HistoryCard';
+import HistoryCardSkeleton from './views/history/HistoryCardSkeleton';
 import HistoryHeader from './views/history/HistoryHeader';
 
 export default function History() {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const loadHistory = () => {
-    setHistory(getAllHistory());
+    setIsLoading(true);
+    // Simuler un délai de chargement pour l'animation
+    setTimeout(() => {
+      setHistory(getAllHistory());
+      setIsLoading(false);
+    }, 500);
   };
 
   useEffect(() => {
@@ -31,6 +38,30 @@ export default function History() {
     }
   };
 
+  if (isLoading) {
+    return (
+      <div className="space-y-4">
+        <HistoryHeader count={0} onClearAll={handleClearAll} />
+        <motion.div
+          className="space-y-3"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.1,
+              },
+            },
+          }}
+        >
+          {[...Array(5)].map((_, index) => (
+            <HistoryCardSkeleton key={index} index={index} />
+          ))}
+        </motion.div>
+      </div>
+    );
+  }
+
   if (history.length === 0) {
     return <EmptyHistoryView />;
   }
@@ -38,24 +69,13 @@ export default function History() {
   return (
     <div className="space-y-4">
       <HistoryHeader count={history.length} onClearAll={handleClearAll} />
-      <motion.div
-        className="space-y-3"
-        initial="hidden"
-        animate="visible"
-        variants={{
-          visible: {
-            transition: {
-              staggerChildren: 0.1,
-            },
-          },
-        }}
-      >
+      <div className="space-y-3">
         <AnimatePresence mode="popLayout">
-          {history.map((entry, index) => (
-            <HistoryCard key={entry.id} entry={entry} index={index} onDelete={handleDelete} />
+          {history.map((entry) => (
+            <HistoryCard key={entry.id} entry={entry} onDelete={handleDelete} />
           ))}
         </AnimatePresence>
-      </motion.div>
+      </div>
     </div>
   );
 }

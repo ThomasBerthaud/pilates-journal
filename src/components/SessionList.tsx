@@ -7,6 +7,7 @@ import type { Session } from '../utils/types';
 import SessionPreview from './SessionPreview';
 import EmptySessionsView from './views/sessions/EmptySessionsView';
 import SessionCard from './views/sessions/SessionCard';
+import SessionCardSkeleton from './views/sessions/SessionCardSkeleton';
 import SessionsHeader from './views/sessions/SessionsHeader';
 
 interface SessionListProps {
@@ -18,12 +19,18 @@ interface SessionListProps {
 export default function SessionList({ onEdit, onStart, onCreateNew }: SessionListProps) {
   const [sessions, setSessions] = useState<Session[]>([]);
   const [previewSession, setPreviewSession] = useState<Session | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const loadSessions = () => {
-    const userSessions = getAllSessions();
-    const presetSessions = getPresetSessions();
-    // Combine presets first, then user sessions
-    setSessions([...presetSessions, ...userSessions]);
+    setIsLoading(true);
+    // Simuler un délai de chargement pour l'animation
+    setTimeout(() => {
+      const userSessions = getAllSessions();
+      const presetSessions = getPresetSessions();
+      // Combine presets first, then user sessions
+      setSessions([...presetSessions, ...userSessions]);
+      setIsLoading(false);
+    }, 500);
   };
 
   useEffect(() => {
@@ -41,6 +48,30 @@ export default function SessionList({ onEdit, onStart, onCreateNew }: SessionLis
     }
   };
 
+  if (isLoading) {
+    return (
+      <div className="space-y-4 pb-20 md:pb-4">
+        <SessionsHeader onCreateNew={onCreateNew} />
+        <motion.div
+          className="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.1,
+              },
+            },
+          }}
+        >
+          {[...Array(6)].map((_, index) => (
+            <SessionCardSkeleton key={index} index={index} />
+          ))}
+        </motion.div>
+      </div>
+    );
+  }
+
   if (sessions.length === 0) {
     return <EmptySessionsView onCreateNew={onCreateNew} />;
   }
@@ -48,19 +79,8 @@ export default function SessionList({ onEdit, onStart, onCreateNew }: SessionLis
   return (
     <div className="space-y-4 pb-20 md:pb-4">
       <SessionsHeader onCreateNew={onCreateNew} />
-      <motion.div
-        className="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
-        initial="hidden"
-        animate="visible"
-        variants={{
-          visible: {
-            transition: {
-              staggerChildren: 0.1,
-            },
-          },
-        }}
-      >
-        {sessions.map((session, index) => (
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {sessions.map((session) => (
           <SessionCard
             key={session.id}
             session={session}
@@ -68,10 +88,9 @@ export default function SessionList({ onEdit, onStart, onCreateNew }: SessionLis
             onStart={onStart}
             onPreview={setPreviewSession}
             onDelete={handleDelete}
-            index={index}
           />
         ))}
-      </motion.div>
+      </div>
       <AnimatePresence>
         {previewSession && (
           <SessionPreview

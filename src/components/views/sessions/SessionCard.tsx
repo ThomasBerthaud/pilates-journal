@@ -9,7 +9,6 @@ interface SessionCardProps {
   onStart: (session: Session) => void;
   onPreview: (session: Session) => void;
   onDelete: (id: string) => void;
-  index?: number;
 }
 
 export default function SessionCard({
@@ -18,7 +17,6 @@ export default function SessionCard({
   onStart,
   onPreview,
   onDelete,
-  index = 0,
 }: SessionCardProps) {
   const totalDuration = calculateTotalDuration(session);
   const isPreset = isPresetSession(session.id);
@@ -30,9 +28,9 @@ export default function SessionCard({
           ? 'bg-linear-to-br from-purple-50 to-indigo-50 border-purple-200'
           : 'bg-white border-gray-100'
       }`}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, delay: index * 0.1 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3 }}
       whileHover={{ scale: 1.05 }}
       layout
     >
