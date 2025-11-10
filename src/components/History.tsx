@@ -32,7 +32,7 @@ export default function History() {
   };
 
   const handleClearAll = () => {
-    if (confirm('Supprimer tout l&apos;historique ? Cette action est irréversible.')) {
+    if (confirm("Supprimer tout l'historique ? Cette action est irréversible.")) {
       clearHistory();
       loadHistory();
     }

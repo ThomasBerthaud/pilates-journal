@@ -28,8 +28,3 @@ jobs:
 
       - name: Run TypeScript type check
         run: npm run type-check
-
-      - name: 'notify vercel'
-        uses: 'vercel/repository-dispatch/actions/status@v1'
-        with:
-          name: Vercel - pilates-journal: lint-and-typecheck
