@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 interface TimerProps {
   seconds: number;
+  autoStart?: boolean;
   onComplete?: () => void;
   size?: 'small' | 'medium' | 'large';
   label?: string;
@@ -11,6 +12,7 @@ interface TimerProps {
 
 export default function Timer({
   seconds,
+  autoStart = false,
   onComplete,
   size = 'large',
   label,
@@ -18,11 +20,14 @@ export default function Timer({
   circleColor = '#6366f1',
 }: TimerProps) {
   const [timeLeft, setTimeLeft] = useState(seconds);
-  const [isRunning, setIsRunning] = useState(false);
+  const [isRunning, setIsRunning] = useState(autoStart);
 
   useEffect(() => {
     setTimeLeft(seconds);
-  }, [seconds]);
+    if (autoStart) {
+      setIsRunning(true);
+    }
+  }, [seconds, autoStart]);
 
   useEffect(() => {
     if (!isRunning || timeLeft <= 0) {

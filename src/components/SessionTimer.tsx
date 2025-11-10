@@ -83,9 +83,7 @@ export default function SessionTimer({ session, onComplete }: SessionTimerProps)
     );
   }
 
-  const progress =
-    ((currentExerciseIndex + (currentPhase === 'rest' ? 1 : 0)) / (session.exercises.length * 2)) *
-    100;
+  const progress = currentExerciseIndex / session.exercises.length;
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -155,6 +153,8 @@ export default function SessionTimer({ session, onComplete }: SessionTimerProps)
                 {currentExercise.description}
               </p>
               <Timer
+                key={`exercise-${currentExerciseIndex}`}
+                autoStart={currentExerciseIndex !== 0}
                 seconds={currentExercise.duration}
                 onComplete={handleExerciseComplete}
                 size="large"
@@ -173,7 +173,13 @@ export default function SessionTimer({ session, onComplete }: SessionTimerProps)
           </div>
           <h2 className="text-4xl font-bold text-gray-800 mb-4">Temps de repos</h2>
           <p className="text-lg text-gray-600 mb-8">Profitez de ce moment pour récupérer</p>
-          <Timer seconds={currentExercise.restTime} onComplete={handleRestComplete} size="large" />
+          <Timer
+            key={`rest-${currentExerciseIndex}`}
+            autoStart={true}
+            seconds={currentExercise.restTime}
+            onComplete={handleRestComplete}
+            size="large"
+          />
         </div>
       )}
 

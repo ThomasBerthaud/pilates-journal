@@ -31,5 +31,42 @@ export function getPresetSessions(): Session[] {
     },
   ];
 
+  if (process.env.NODE_ENV === 'development') {
+    presets.push({
+      id: 'preset-test',
+      name: 'Test',
+      exercises: [
+        {
+          name: 'Test',
+          duration: 10,
+          description: 'Test',
+          restTime: 0,
+          type: 'warmup',
+        },
+        {
+          name: 'Test 2',
+          duration: 10,
+          description: 'Test 2',
+          restTime: 5,
+        },
+        {
+          name: 'Test 3',
+          duration: 10,
+          description: 'Test 3',
+          restTime: 5,
+        },
+        {
+          name: 'Test 4',
+          duration: 10,
+          description: 'Test 4',
+          restTime: 0,
+          type: 'stretch',
+        },
+      ],
+      createdAt: PRESET_DATE,
+      updatedAt: PRESET_DATE,
+    });
+  }
+
   return presets;
 }
