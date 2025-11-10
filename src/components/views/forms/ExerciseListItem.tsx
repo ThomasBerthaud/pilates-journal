@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import type { Exercise } from '../../../utils/types';
+import { getCategoryColor, getCategoryLabel } from '../../../utils/categoryColors';
 
 interface ExerciseListItemProps {
   exercise: Exercise;
@@ -32,7 +33,14 @@ export default function ExerciseListItem({
     >
       <div className="flex justify-between items-start mb-2">
         <div className="flex-1">
-          <h4 className="font-semibold text-gray-800">{exercise.name}</h4>
+          <div className="flex items-center gap-2 mb-1">
+            <h4 className="font-semibold text-gray-800">{exercise.name}</h4>
+            {exercise.category && (
+              <span className={`px-2 py-1 rounded text-xs font-semibold ${getCategoryColor(exercise.category)}`}>
+                {getCategoryLabel(exercise.category)}
+              </span>
+            )}
+          </div>
           <p className="text-sm text-gray-600 mt-1">{exercise.description}</p>
           <div className="flex gap-4 mt-2 text-xs text-gray-500">
             <span>

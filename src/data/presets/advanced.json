@@ -6,62 +6,70 @@
       "duration": 300,
       "description": "Séquence d'échauffement avancé : rotations complètes des articulations (60s), cercles de bras dynamiques (60s), rotations de hanches et fentes profondes (60s), sauts et mouvements dynamiques (60s), étirements dynamiques complets (60s).",
       "restTime": 0,
-      "type": "warmup"
+      "category": "warmup"
     },
     {
       "name": "Teaser",
       "duration": 90,
       "description": "Allongé sur le dos, jambes tendues. Soulevez le torse et les jambes simultanément pour former un V. Maintenez l'équilibre.",
-      "restTime": 30
+      "restTime": 30,
+      "category": "abdominaux"
     },
     {
       "name": "Swimming",
       "duration": 90,
       "description": "Allongé sur le ventre, bras et jambes tendus. Soulevez le bras droit et la jambe gauche, puis alternez rapidement.",
-      "restTime": 30
+      "restTime": 30,
+      "category": "dos"
     },
     {
       "name": "Side Kick Series",
       "duration": 120,
       "description": "Allongé sur le côté, jambe supérieure tendue. Effectuez des battements de jambe vers l'avant, le haut et l'arrière.",
-      "restTime": 30
+      "restTime": 30,
+      "category": "jambes"
     },
     {
       "name": "Roll Over",
       "duration": 90,
       "description": "Allongé sur le dos, jambes tendues. Roulez les jambes par-dessus la tête en contrôlant le mouvement, puis revenez.",
-      "restTime": 30
+      "restTime": 30,
+      "category": "abdominaux"
     },
     {
       "name": "Corkscrew",
       "duration": 120,
       "description": "Allongé sur le dos, jambes tendues vers le ciel. Faites des cercles avec les jambes en gardant le bassin stable.",
-      "restTime": 30
+      "restTime": 30,
+      "category": "abdominaux"
     },
     {
       "name": "Swan Dive",
       "duration": 90,
       "description": "Allongé sur le ventre, bras tendus devant. Soulevez le torse en arc, puis effectuez un mouvement de plongée contrôlé.",
-      "restTime": 30
+      "restTime": 30,
+      "category": "dos"
     },
     {
       "name": "Boomerang",
       "duration": 90,
       "description": "Assis, jambes tendues. Balancez-vous en arrière puis revenez en équilibre, jambes en l'air.",
-      "restTime": 30
+      "restTime": 30,
+      "category": "abdominaux"
     },
     {
       "name": "Control Balance",
       "duration": 90,
       "description": "Allongé sur le dos, jambes tendues. Soulevez les jambes et le torse en équilibre, puis redescendez avec contrôle.",
-      "restTime": 30
+      "restTime": 30,
+      "category": "abdominaux"
     },
     {
       "name": "Étirement profond",
       "duration": 300,
       "description": "Séquence d'étirements avancés : étirement profond des ischio-jambiers (60s), étirement du dos et de la colonne (60s), étirement des flancs et des obliques (60s), étirement des épaules et des trapèzes (60s), étirement des hanches, fessiers et psoas (60s). Maintenez chaque position 30 secondes de chaque côté avec des respirations profondes.",
       "restTime": 0,
-      "type": "stretch"
+      "category": "stretch"
     }
   ]
 }

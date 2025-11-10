@@ -1,7 +1,9 @@
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { formatDuration } from '../utils/calculations';
 import { createSession, getSessionById, saveSession } from '../utils/storage';
 import type { Exercise } from '../utils/types';
+import ExerciseBankSelector from './ExerciseBankSelector';
 import ExerciseForm from './ExerciseForm';
 import ExercisesList from './views/forms/ExercisesList';
 
@@ -25,6 +27,7 @@ export default function SessionForm({ sessionId, onSave, onCancel }: SessionForm
   const [exercises, setExercises] = useState<Exercise[]>(() => initialSession?.exercises || []);
   const [editingExerciseIndex, setEditingExerciseIndex] = useState<number | null>(null);
   const [showExerciseForm, setShowExerciseForm] = useState(false);
+  const [showExerciseBankSelector, setShowExerciseBankSelector] = useState(false);
 
   useEffect(() => {
     if (sessionId) {
@@ -107,6 +110,17 @@ export default function SessionForm({ sessionId, onSave, onCancel }: SessionForm
     }
   };
 
+  const handleSelectFromBank = (selectedExercises: Exercise[]) => {
+    setExercises([...exercises, ...selectedExercises]);
+    setShowExerciseBankSelector(false);
+  };
+
+  const calculateSessionDuration = (): number => {
+    return exercises.reduce((total, exercise) => {
+      return total + exercise.duration + exercise.restTime;
+    }, 0);
+  };
+
   return (
     <>
       <motion.div
@@ -124,9 +138,16 @@ export default function SessionForm({ sessionId, onSave, onCancel }: SessionForm
           transition={{ duration: 0.3, ease: 'easeOut' }}
         >
           <div className="flex-1 overflow-y-auto p-6">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">
-              {sessionId ? 'Modifier la séance' : 'Nouvelle séance'}
-            </h2>
+            <div className="flex items-center gap-3 mb-6">
+              <h2 className="text-2xl font-bold text-gray-800">
+                {sessionId ? 'Modifier la séance' : 'Nouvelle séance'}
+              </h2>
+              {exercises.length > 0 && (
+                <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-lg text-sm font-semibold">
+                  {formatDuration(calculateSessionDuration())}
+                </span>
+              )}
+            </div>
 
             <div className="mb-6">
               <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -146,6 +167,9 @@ export default function SessionForm({ sessionId, onSave, onCancel }: SessionForm
               onAddExercise={() => {
                 setEditingExerciseIndex(null);
                 setShowExerciseForm(true);
+              }}
+              onAddExerciseFromBank={() => {
+                setShowExerciseBankSelector(true);
               }}
               onEditExercise={handleEditExercise}
               onDeleteExercise={handleDeleteExercise}
@@ -176,16 +200,24 @@ export default function SessionForm({ sessionId, onSave, onCancel }: SessionForm
         </motion.div>
       </motion.div>
 
-      {showExerciseForm && (
-        <ExerciseForm
-          exercise={editingExerciseIndex !== null ? exercises[editingExerciseIndex] : undefined}
-          onSave={handleAddExercise}
-          onCancel={() => {
-            setShowExerciseForm(false);
-            setEditingExerciseIndex(null);
-          }}
-        />
-      )}
+      <AnimatePresence>
+        {showExerciseForm && (
+          <ExerciseForm
+            exercise={editingExerciseIndex !== null ? exercises[editingExerciseIndex] : undefined}
+            onSave={handleAddExercise}
+            onCancel={() => {
+              setShowExerciseForm(false);
+              setEditingExerciseIndex(null);
+            }}
+          />
+        )}
+        {showExerciseBankSelector && (
+          <ExerciseBankSelector
+            onSelect={handleSelectFromBank}
+            onCancel={() => setShowExerciseBankSelector(false)}
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 }

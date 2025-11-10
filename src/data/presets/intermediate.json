@@ -6,68 +6,77 @@
       "duration": 300,
       "description": "Séquence d'échauffement : rotations des épaules et du cou (60s), cercles de bras larges (60s), rotations de hanches et du bassin (60s), fentes dynamiques (60s), sauts légers sur place (60s).",
       "restTime": 0,
-      "type": "warmup"
+      "category": "warmup"
     },
     {
       "name": "Planche complète",
       "duration": 90,
       "description": "En position planche sur les mains, gardez le corps aligné de la tête aux pieds. Contractez les abdominaux.",
-      "restTime": 30
+      "restTime": 30,
+      "category": "abdominaux"
     },
     {
       "name": "Hundred",
       "duration": 100,
       "description": "Allongé sur le dos, jambes en table. Tête et épaules soulevées, bras le long du corps. Pompez les bras 100 fois en respirant.",
-      "restTime": 30
+      "restTime": 30,
+      "category": "abdominaux"
     },
     {
       "name": "Single Leg Stretch",
       "duration": 60,
       "description": "Allongé sur le dos, tête soulevée. Alternez les jambes en tirant un genou vers la poitrine, l'autre jambe tendue.",
-      "restTime": 30
+      "restTime": 30,
+      "category": "abdominaux"
     },
     {
       "name": "Double Leg Stretch",
       "duration": 60,
       "description": "Allongé sur le dos, genoux vers la poitrine. Étendez les jambes et les bras simultanément, puis ramenez-les.",
-      "restTime": 30
+      "restTime": 30,
+      "category": "abdominaux"
     },
     {
       "name": "Side Plank",
       "duration": 90,
       "description": "En position planche latérale, appui sur un avant-bras. Gardez le corps aligné, contractez les abdominaux.",
-      "restTime": 30
+      "restTime": 30,
+      "category": "abdominaux"
     },
     {
       "name": "Criss Cross",
       "duration": 60,
       "description": "Allongé sur le dos, tête soulevée. Alternez en amenant le coude opposé au genou, l'autre jambe tendue.",
-      "restTime": 30
+      "restTime": 30,
+      "category": "abdominaux"
     },
     {
       "name": "Scissors",
       "duration": 60,
       "description": "Allongé sur le dos, jambes tendues. Alternez les jambes en les croisant, une vers le haut, l'autre vers le bas.",
-      "restTime": 30
+      "restTime": 30,
+      "category": "jambes"
     },
     {
       "name": "Swimming",
       "duration": 90,
       "description": "Allongé sur le ventre, bras et jambes tendus. Soulevez le bras droit et la jambe gauche, puis alternez.",
-      "restTime": 30
+      "restTime": 30,
+      "category": "dos"
     },
     {
       "name": "Saw",
       "duration": 60,
       "description": "Assis, jambes écartées, bras en croix. Tournez le torse et penchez-vous vers l'avant comme une scie.",
-      "restTime": 30
+      "restTime": 30,
+      "category": "dos"
     },
     {
       "name": "Étirement complet",
       "duration": 300,
       "description": "Séquence d'étirements : étirement des ischio-jambiers (60s), étirement du dos en flexion (60s), étirement des flancs et des obliques (60s), étirement des épaules et du cou (60s), étirement des hanches et des fessiers (60s). Maintenez chaque position 30 secondes de chaque côté.",
       "restTime": 0,
-      "type": "stretch"
+      "category": "stretch"
     }
   ]
 }

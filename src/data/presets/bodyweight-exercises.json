@@ -1,0 +1,292 @@
+{
+  "name": "Exercices Poids du Corps",
+  "exercises": [
+    {
+      "name": "Push-ups",
+      "duration": 60,
+      "description": "En position planche, bras tendus. Descendez le corps en pliant les bras jusqu'à ce que la poitrine touche presque le sol, puis remontez en poussant.",
+      "restTime": 30,
+      "category": "epaules-bras"
+    },
+    {
+      "name": "Push-ups inclinés",
+      "duration": 60,
+      "description": "Même mouvement que les push-ups mais avec les mains surélevées sur un banc ou une chaise. Plus facile pour débuter.",
+      "restTime": 30,
+      "category": "epaules-bras"
+    },
+    {
+      "name": "Push-ups déclinés",
+      "duration": 60,
+      "description": "Push-ups avec les pieds surélevés sur un banc. Plus difficile, sollicite davantage les épaules et le haut de la poitrine.",
+      "restTime": 30,
+      "category": "epaules-bras"
+    },
+    {
+      "name": "Dips",
+      "duration": 60,
+      "description": "Assis sur le bord d'une chaise ou d'un banc, mains sur le bord. Descendez en pliant les bras, puis remontez en poussant.",
+      "restTime": 30,
+      "category": "epaules-bras"
+    },
+    {
+      "name": "Squats",
+      "duration": 60,
+      "description": "Debout, pieds largeur des épaules. Descendez en pliant les genoux comme pour s'asseoir, gardez le dos droit, puis remontez.",
+      "restTime": 30,
+      "category": "jambes"
+    },
+    {
+      "name": "Squats sautés",
+      "duration": 60,
+      "description": "Squats classiques avec saut à la remontée. Augmente l'intensité et le travail cardiovasculaire.",
+      "restTime": 30,
+      "category": "jambes"
+    },
+    {
+      "name": "Fentes",
+      "duration": 90,
+      "description": "Un pied en avant, l'autre en arrière. Descendez en pliant les deux genoux jusqu'à ce que la cuisse avant soit parallèle au sol. Alternez les jambes.",
+      "restTime": 30,
+      "category": "jambes"
+    },
+    {
+      "name": "Fentes sautées",
+      "duration": 60,
+      "description": "Fentes avec saut pour alterner les jambes. Exercice dynamique et intense.",
+      "restTime": 30,
+      "category": "jambes"
+    },
+    {
+      "name": "Wall Sit",
+      "duration": 60,
+      "description": "Dos contre un mur, descendez jusqu'à avoir les cuisses parallèles au sol. Maintenez la position comme si vous étiez assis sur une chaise invisible.",
+      "restTime": 30,
+      "category": "jambes"
+    },
+    {
+      "name": "Pistol Squat",
+      "duration": 90,
+      "description": "Squat sur une seule jambe, l'autre jambe tendue devant. Exercice avancé qui demande force et équilibre.",
+      "restTime": 30,
+      "category": "jambes"
+    },
+    {
+      "name": "Burpees",
+      "duration": 60,
+      "description": "Squat, puis saut en planche, pompe, retour en squat, puis saut vers le haut. Exercice complet du corps entier.",
+      "restTime": 30,
+      "category": "corps-entier"
+    },
+    {
+      "name": "Mountain Climbers",
+      "duration": 60,
+      "description": "En position planche, alternez rapidement les genoux vers la poitrine comme si vous courriez sur place.",
+      "restTime": 30,
+      "category": "abdominaux"
+    },
+    {
+      "name": "Jumping Jacks",
+      "duration": 60,
+      "description": "Sauts avec écarts simultanés des jambes et des bras. Excellent exercice cardiovasculaire.",
+      "restTime": 30,
+      "category": "corps-entier"
+    },
+    {
+      "name": "Pompes diamant",
+      "duration": 60,
+      "description": "Push-ups avec les mains formant un diamant sous la poitrine. Sollicite davantage les triceps.",
+      "restTime": 30,
+      "category": "epaules-bras"
+    },
+    {
+      "name": "Pompes larges",
+      "duration": 60,
+      "description": "Push-ups avec les mains plus écartées que la largeur des épaules. Sollicite davantage la poitrine.",
+      "restTime": 30,
+      "category": "epaules-bras"
+    },
+    {
+      "name": "Squats bulgares",
+      "duration": 90,
+      "description": "Fente avec le pied arrière surélevé sur un banc. Excellent pour les quadriceps et les fessiers.",
+      "restTime": 30,
+      "category": "jambes"
+    },
+    {
+      "name": "Calf Raises",
+      "duration": 60,
+      "description": "Debout, montez sur la pointe des pieds en contractant les mollets, puis redescendez lentement.",
+      "restTime": 30,
+      "category": "jambes"
+    },
+    {
+      "name": "Glute Bridge",
+      "duration": 60,
+      "description": "Allongé sur le dos, genoux pliés. Soulevez les hanches en contractant les fessiers, maintenez puis redescendez.",
+      "restTime": 30,
+      "category": "fessiers"
+    },
+    {
+      "name": "Single Leg Glute Bridge",
+      "duration": 90,
+      "description": "Même mouvement que le glute bridge mais sur une seule jambe, l'autre tendue. Plus intense pour les fessiers.",
+      "restTime": 30,
+      "category": "fessiers"
+    },
+    {
+      "name": "Hip Thrust",
+      "duration": 60,
+      "description": "Dos contre un banc, genoux pliés. Poussez les hanches vers le haut en contractant les fessiers.",
+      "restTime": 30,
+      "category": "fessiers"
+    },
+    {
+      "name": "Pike Push-ups",
+      "duration": 60,
+      "description": "Position en V inversé, mains et pieds au sol. Descendez la tête vers le sol en pliant les bras, puis remontez.",
+      "restTime": 30,
+      "category": "epaules-bras"
+    },
+    {
+      "name": "Handstand Push-ups",
+      "duration": 90,
+      "description": "Pompes en équilibre sur les mains contre un mur. Exercice très avancé pour les épaules.",
+      "restTime": 30,
+      "category": "epaules-bras"
+    },
+    {
+      "name": "Pull-ups",
+      "duration": 60,
+      "description": "Suspendu à une barre, tirez votre corps vers le haut jusqu'à ce que le menton dépasse la barre, puis redescendez.",
+      "restTime": 30,
+      "category": "epaules-bras"
+    },
+    {
+      "name": "Chin-ups",
+      "duration": 60,
+      "description": "Comme les pull-ups mais avec les paumes face à vous. Sollicite davantage les biceps.",
+      "restTime": 30,
+      "category": "epaules-bras"
+    },
+    {
+      "name": "Australian Pull-ups",
+      "duration": 60,
+      "description": "Sous une barre basse, corps incliné, tirez votre poitrine vers la barre. Plus facile que les pull-ups classiques.",
+      "restTime": 30,
+      "category": "epaules-bras"
+    },
+    {
+      "name": "L-sit",
+      "duration": 60,
+      "description": "Assis, soulevez le corps en tenant les jambes tendues devant vous. Maintenez la position en forme de L.",
+      "restTime": 30,
+      "category": "abdominaux"
+    },
+    {
+      "name": "Dragon Flag",
+      "duration": 90,
+      "description": "Allongé, tenez-vous à un support derrière la tête. Soulevez le corps en ligne droite jusqu'à la verticale, puis redescendez avec contrôle.",
+      "restTime": 30,
+      "category": "abdominaux"
+    },
+    {
+      "name": "Hollow Body Hold",
+      "duration": 60,
+      "description": "Allongé sur le dos, soulevez les épaules et les jambes du sol. Maintenez la position en forme de banane.",
+      "restTime": 30,
+      "category": "abdominaux"
+    },
+    {
+      "name": "V-ups",
+      "duration": 60,
+      "description": "Allongé, soulevez simultanément le torse et les jambes pour former un V, puis redescendez.",
+      "restTime": 30,
+      "category": "abdominaux"
+    },
+    {
+      "name": "Russian Twist",
+      "duration": 90,
+      "description": "Assis, jambes légèrement surélevées, tournez le torse de gauche à droite en contractant les obliques.",
+      "restTime": 30,
+      "category": "abdominaux"
+    },
+    {
+      "name": "Superman",
+      "duration": 60,
+      "description": "Allongé sur le ventre, soulevez simultanément les bras et les jambes. Maintenez la position pour renforcer le dos.",
+      "restTime": 30,
+      "category": "dos"
+    },
+    {
+      "name": "Reverse Plank",
+      "duration": 60,
+      "description": "Assis, mains derrière vous, soulevez les hanches pour former une planche inversée. Renforce le dos et les épaules.",
+      "restTime": 30,
+      "category": "dos"
+    },
+    {
+      "name": "Arch Hold",
+      "duration": 60,
+      "description": "Allongé sur le ventre, soulevez le torse et les jambes en arc. Maintenez pour renforcer toute la chaîne postérieure.",
+      "restTime": 30,
+      "category": "dos"
+    },
+    {
+      "name": "Shrimp Squat",
+      "duration": 90,
+      "description": "Squat sur une jambe avec l'autre jambe tenue derrière. Exercice avancé pour les jambes et l'équilibre.",
+      "restTime": 30,
+      "category": "jambes"
+    },
+    {
+      "name": "Single Leg Deadlift",
+      "duration": 90,
+      "description": "Debout sur une jambe, penchez-vous en avant en levant l'autre jambe derrière. Renforce les ischio-jambiers et l'équilibre.",
+      "restTime": 30,
+      "category": "jambes"
+    },
+    {
+      "name": "Cossack Squat",
+      "duration": 90,
+      "description": "Squat latéral avec une jambe tendue sur le côté. Excellent pour la mobilité des hanches et la force des jambes.",
+      "restTime": 30,
+      "category": "hanches"
+    },
+    {
+      "name": "Flutter Kicks",
+      "duration": 60,
+      "description": "Allongé, jambes légèrement surélevées, alternez rapidement les jambes de haut en bas comme des ciseaux.",
+      "restTime": 30,
+      "category": "abdominaux"
+    },
+    {
+      "name": "Bicycle Crunches",
+      "duration": 90,
+      "description": "Allongé, genoux vers la poitrine. Alternez en amenant le coude opposé au genou, comme si vous pédaliez.",
+      "restTime": 30,
+      "category": "abdominaux"
+    },
+    {
+      "name": "Plank",
+      "duration": 60,
+      "description": "En position planche sur les avant-bras, gardez le corps aligné de la tête aux pieds. Contractez les abdominaux.",
+      "restTime": 30,
+      "category": "abdominaux"
+    },
+    {
+      "name": "Plank Shoulder Taps",
+      "duration": 60,
+      "description": "En position planche, alternez en touchant l'épaule opposée avec la main. Gardez les hanches stables.",
+      "restTime": 30,
+      "category": "abdominaux"
+    },
+    {
+      "name": "Plank to Push-up",
+      "duration": 60,
+      "description": "En planche sur les avant-bras, passez alternativement sur les mains puis revenez sur les avant-bras.",
+      "restTime": 30,
+      "category": "abdominaux"
+    }
+  ]
+}

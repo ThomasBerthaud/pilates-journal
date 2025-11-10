@@ -6,74 +6,84 @@
       "duration": 300,
       "description": "Séquence d'échauffement : rotations des épaules (30s), cercles de bras (30s), rotations de hanches (30s), fentes légères (60s), marche sur place (60s), étirements dynamiques des jambes (30s), rotations du cou (20s).",
       "restTime": 0,
-      "type": "warmup"
+      "category": "warmup"
     },
     {
       "name": "Respiration",
       "duration": 120,
       "description": "Allongez-vous sur le dos, genoux pliés. Inspirez profondément par le nez en gonflant le ventre, expirez lentement par la bouche.",
-      "restTime": 30
+      "restTime": 30,
+      "category": "corps-entier"
     },
     {
       "name": "Pont",
       "duration": 60,
       "description": "Allongé sur le dos, genoux pliés, pieds au sol. Soulevez les hanches en contractant les fessiers et les abdominaux. Maintenez la position.",
-      "restTime": 30
+      "restTime": 30,
+      "category": "fessiers"
     },
     {
       "name": "Planche genoux",
       "duration": 60,
       "description": "En position planche sur les genoux, gardez le dos droit et les abdominaux contractés. Maintenez la position.",
-      "restTime": 30
+      "restTime": 30,
+      "category": "abdominaux"
     },
     {
       "name": "Cercles de jambes",
       "duration": 60,
       "description": "Allongé sur le dos, une jambe tendue vers le ciel. Faites de petits cercles avec la jambe, 15 dans un sens puis 15 dans l'autre.",
-      "restTime": 30
+      "restTime": 30,
+      "category": "jambes"
     },
     {
       "name": "Dead Bug",
       "duration": 90,
       "description": "Allongé sur le dos, bras tendus vers le ciel, genoux à 90°. Étendez une jambe et le bras opposé, puis revenez. Alternez.",
-      "restTime": 30
+      "restTime": 30,
+      "category": "abdominaux"
     },
     {
       "name": "Cat-Cow",
       "duration": 90,
       "description": "À quatre pattes, alternez entre l'arrondissement du dos (chat) et l'extension (vache) en synchronisant avec la respiration.",
-      "restTime": 30
+      "restTime": 30,
+      "category": "dos"
     },
     {
       "name": "Leg Raises",
       "duration": 90,
       "description": "Allongé sur le dos, jambes tendues. Soulevez les jambes lentement jusqu'à 90°, puis redescendez avec contrôle.",
-      "restTime": 30
+      "restTime": 30,
+      "category": "jambes"
     },
     {
       "name": "Spine Stretch",
       "duration": 90,
       "description": "Assis, jambes tendues. Penchez-vous doucement vers l'avant en gardant le dos droit, puis revenez.",
-      "restTime": 30
+      "restTime": 30,
+      "category": "dos"
     },
     {
       "name": "Hip Circles",
       "duration": 60,
       "description": "Allongé sur le dos, genoux pliés. Faites de petits cercles avec les genoux pour mobiliser les hanches.",
-      "restTime": 30
+      "restTime": 30,
+      "category": "hanches"
     },
     {
       "name": "Pelvic Tilt",
       "duration": 60,
       "description": "Allongé sur le dos, genoux pliés. Contractez les abdominaux pour aplatir le bas du dos contre le sol, puis relâchez.",
-      "restTime": 30
+      "restTime": 30,
+      "category": "abdominaux"
     },
     {
       "name": "Étirement complet",
       "duration": 300,
       "description": "Séquence d'étirements : étirement des ischio-jambiers (60s), étirement du dos assis (60s), étirement des flancs (60s), étirement des épaules (60s), étirement des hanches (60s). Maintenez chaque position 30 secondes de chaque côté.",
       "restTime": 0,
-      "type": "stretch"
+      "category": "stretch"
     }
   ]
 }

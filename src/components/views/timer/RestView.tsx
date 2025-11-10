@@ -33,4 +33,3 @@ export default function RestView({ restTime, exerciseIndex, onComplete }: RestVi
     </motion.div>
   );
 }
-

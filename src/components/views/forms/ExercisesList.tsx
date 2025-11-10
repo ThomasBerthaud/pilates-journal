@@ -1,4 +1,4 @@
-import { PlusIcon } from '@heroicons/react/24/solid';
+import { BookOpenIcon, PlusIcon } from '@heroicons/react/24/solid';
 import { AnimatePresence, motion } from 'framer-motion';
 import type { Exercise } from '../../../utils/types';
 import EmptyExercisesView from './EmptyExercisesView';
@@ -7,6 +7,7 @@ import ExerciseListItem from './ExerciseListItem';
 interface ExercisesListProps {
   exercises: Exercise[];
   onAddExercise: () => void;
+  onAddExerciseFromBank: () => void;
   onEditExercise: (index: number) => void;
   onDeleteExercise: (index: number) => void;
   onMoveExercise: (index: number, direction: 'up' | 'down') => void;
@@ -15,6 +16,7 @@ interface ExercisesListProps {
 export default function ExercisesList({
   exercises,
   onAddExercise,
+  onAddExerciseFromBank,
   onEditExercise,
   onDeleteExercise,
   onMoveExercise,
@@ -25,15 +27,24 @@ export default function ExercisesList({
         <label className="block text-sm font-semibold text-gray-700">
           Exercices ({exercises.length})
         </label>
-        <motion.button
-          onClick={onAddExercise}
-          className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <PlusIcon className="w-5 h-5" />
-          Ajouter un exercice
-        </motion.button>
+        <div className="flex gap-2">
+          <motion.button
+            onClick={onAddExerciseFromBank}
+            className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-colors"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <BookOpenIcon className="w-5 h-5" />
+          </motion.button>
+          <motion.button
+            onClick={onAddExercise}
+            className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <PlusIcon className="w-5 h-5" />
+          </motion.button>
+        </div>
       </div>
 
       {exercises.length === 0 ? (
