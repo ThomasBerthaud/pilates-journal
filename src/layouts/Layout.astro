@@ -5,7 +5,7 @@ interface Props {
   title?: string;
 }
 
-const { title = 'Pilates Journal' } = Astro.props;
+const { title = 'Journal de Pilates' } = Astro.props;
 ---
 
 <!doctype html>
@@ -23,7 +23,7 @@ const { title = 'Pilates Journal' } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
   </head>
-  <body class="bg-linear-to-br from-indigo-50 to-purple-50 min-h-screen">
+  <body class="bg-linear-to-br from-indigo-50 via-purple-50 to-pink-50 min-h-screen">
     <slot />
   </body>
 </html>

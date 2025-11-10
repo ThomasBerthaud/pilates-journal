@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { saveSession, createSession, getSessionById } from '../utils/storage';
+import { useEffect, useState } from 'react';
+import { createSession, getSessionById, saveSession } from '../utils/storage';
 import type { Exercise } from '../utils/types';
 import ExerciseForm from './ExerciseForm';
 
@@ -105,10 +105,6 @@ export default function SessionForm({ sessionId, onSave, onCancel }: SessionForm
     }
   };
 
-  if (!sessionId && !showExerciseForm && exercises.length === 0 && !name) {
-    return null;
-  }
-
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 animate-fade-in">
       <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto animate-scale-in">
@@ -126,7 +122,7 @@ export default function SessionForm({ sessionId, onSave, onCancel }: SessionForm
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Ex: Séance matinale"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-900 bg-white"
             />
           </div>
 
