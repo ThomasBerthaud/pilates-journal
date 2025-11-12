@@ -6,6 +6,7 @@ import EmptyHistoryView from './views/history/EmptyHistoryView';
 import HistoryCard from './views/history/HistoryCard';
 import HistoryCardSkeleton from './views/history/HistoryCardSkeleton';
 import HistoryHeader from './views/history/HistoryHeader';
+import HistoryTimeline from './views/history/HistoryTimeline';
 
 export default function History() {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
@@ -69,6 +70,8 @@ export default function History() {
   return (
     <div className="space-y-4">
       <HistoryHeader count={history.length} onClearAll={handleClearAll} />
+      <HistoryTimeline data={history} />
+      <div role="separator" aria-hidden="true" className="border-t border-gray-200" />
       <div className="space-y-3">
         <AnimatePresence mode="popLayout">
           {history.map((entry) => (

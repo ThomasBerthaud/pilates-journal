@@ -77,7 +77,9 @@ export default function HistoryCard({ entry, onDelete }: HistoryCardProps) {
         </div>
         <motion.button
           onClick={() => onDelete(entry.id)}
-          className="px-4 py-2 border border-red-600 bg-transparent text-red-600 rounded-lg font-semibold hover:bg-red-600 hover:text-white transition-colors flex items-center gap-2 ml-4"
+          className="px-4 py-2 rounded-lg font-semibold flex items-center gap-2 border border-red-200 text-red-700 bg-white hover:bg-red-50 hover:border-red-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500/30 ml-4"
+          aria-label="Supprimer cette entrée"
+          title="Supprimer cette entrée"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
